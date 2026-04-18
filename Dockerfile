@@ -14,6 +14,5 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-EXPOSE 80
-
-CMD php -S 0.0.0.0:${PORT:-80} router.php
+# Porneste pe portul injectat de Railway (default 8080)
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8080} router.php"]
