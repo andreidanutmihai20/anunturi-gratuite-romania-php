@@ -11,10 +11,8 @@ require_once __DIR__ . '/middleware/auth.php';
 // Seteaza CORS headers
 setCorsHeaders();
 
-// Obtine calea URL (fara query string)
-$requestUri  = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$scriptName  = dirname($_SERVER['SCRIPT_NAME']);
-$path        = '/' . trim(str_replace($scriptName, '', $requestUri), '/');
+// Obtine calea URL (fara query string) - compatibil cu PHP built-in server
+$path = '/' . trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $method      = $_SERVER['REQUEST_METHOD'];
 
 // Curata path-ul de slash-uri extra
