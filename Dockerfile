@@ -8,5 +8,9 @@ RUN apt-get update && apt-get install -y libssl-dev pkg-config \
 WORKDIR /app
 COPY index.php .
 COPY router.php .
+COPY start.sh .
+RUN chmod +x start.sh
 
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8080} router.php"]
+EXPOSE 80
+
+CMD ["/bin/sh", "start.sh"]
